@@ -39,7 +39,7 @@
     "dev": "ESLINT_NO_DEV_ERRORS='true' react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "cy": "npx cypress open",
+    "e2e": "npx cypress run",
     "eject": "react-scripts eject"
   },
   "browserslist": {
