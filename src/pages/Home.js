@@ -4,8 +4,12 @@ export function Home() {
       <section>
         <h2 data-test="heading">Bookish</h2>
         <div data-test="book-list">
-          <div className="book-item">Item one</div>
-          <div className="book-item">Item Two</div>
+          <div className="book-item">
+            <h2>Refactoring</h2>
+          </div>
+          <div className="book-item">
+            <h2>Domain-driven design</h2>
+          </div>
         </div>
       </section>
     </div>
