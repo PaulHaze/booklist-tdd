@@ -39,7 +39,11 @@
     "tailwindcss": "^3.0.24"
   },
   "scripts": {
-    "dev": "json-server --watch src/data/db.json --port 8080 & ESLINT_NO_DEV_ERRORS='true' react-scripts start",
+    "dev": "npm-run-all --parallel jsonserver mockserver reactscripts",
+    "dv": "json-server --watch src/data/db.json --port 8080 & ESLINT_NO_DEV_ERRORS='true' react-scripts start",
+    "reactscripts": "ESLINT_NO_DEV_ERRORS='true' react-scripts start",
+    "jsonserver": "json-server --watch src/data/db.json --port 8080",
+    "mockserver": "node src/data/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "e2e": "npx cypress run",
