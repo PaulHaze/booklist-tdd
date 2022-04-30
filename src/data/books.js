@@ -5,10 +5,10 @@ export const books = [
   },
   {
     id: 2,
-    title: 'Refactoring',
+    title: 'Domain-driven design',
   },
-  {
-    id: 3,
-    title: 'Refactoring',
-  },
+  // {
+  //   id: 3,
+  //   title: 'Lean Enteprise',
+  // },
 ];

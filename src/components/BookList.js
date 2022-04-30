@@ -3,11 +3,8 @@ import { books } from 'data/books';
 import { Book } from './Book';
 
 export function BookList() {
-  return (
-    <>
-      {books.map(book => (
-        <Book key={book.id} bookDetails={book} />
-      ))}
-    </>
-  );
+  const renderBooks = books.map(book => (
+    <Book key={book.id} bookDetails={book} />
+  ));
+  return <div data-test="book-list">{renderBooks}</div>;
 }
