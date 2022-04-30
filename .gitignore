@@ -27,4 +27,5 @@ package-lock.json
 
 *.log
 debug/
-
+cypress/videos/*
+cypress/videos/ui/bookish.spec.js.mp4
