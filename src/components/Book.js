@@ -1,7 +1,7 @@
 export function Book({ bookDetails }) {
   return (
     <div className="book-item">
-      <h2 className="title">{bookDetails.title}</h2>
+      <h2 className="title">{bookDetails.name}</h2>
     </div>
   );
 }

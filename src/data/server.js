@@ -1,6 +1,6 @@
 /* eslint-disable dot-notation */
 const jsonServer = require('json-server');
-const url = require('url');
+// const url = require('url');
 
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
