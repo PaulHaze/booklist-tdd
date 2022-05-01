@@ -5,7 +5,7 @@ const API_URL = 'http://localhost:8080/books';
 // const API_DELETE = `${API_URL}?_cleanup=true`;
 
 describe('Bookish Application', () => {
-  /*   before(() => {
+  before(() => {
     return axios
       .delete('http://localhost:8080/books?_cleanup=true')
       .catch(err => err);
@@ -27,7 +27,7 @@ describe('Bookish Application', () => {
     return axios
       .delete('http://localhost:8080/books?_cleanup=true')
       .catch(err => err);
-  }); */
+  });
 
   it('Visits Bookish and finds an h2 with "Bookish"', () => {
     cy.visit('http://localhost:3000/');
