@@ -18,20 +18,24 @@ export function Home() {
 
   useEffect(() => {
     if (!localBooks.length) {
+      console.log(localBooks.length);
       console.log('fetching books');
       fetchBooks();
     }
   }, []);
 
   const handleReload = () => {
-    console.log('running axios');
-    return books.map(book =>
+    books.forEach(book =>
       axios.post('http://localhost:8080/books', book, {
         headers: {
           'Content-Type': 'application/json',
         },
       }),
     );
+  };
+
+  const handleDelete = () => {
+    axios.delete('http://localhost:8080/books?_cleanup=true').catch(err => err);
   };
 
   const handleClear = () => {
@@ -72,6 +76,14 @@ export function Home() {
           variant="filled"
         >
           Clear Books
+        </Button>
+        <Button
+          onClick={handleDelete}
+          className="bg-teal-500  w-40"
+          color="teal"
+          variant="filled"
+        >
+          Delete API
         </Button>
       </div>
     </div>
