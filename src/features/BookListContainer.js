@@ -10,9 +10,21 @@ import { books } from 'data/books';
 
 export function BookListContainer() {
   const [localBooks, setLocalBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [hasErrors, setHasErrors] = useState(false);
+
   const fetchBooks = async () => {
-    const res = await axios.get('http://localhost:8080/books');
-    setLocalBooks(res.data);
+    setLoading(true);
+    setHasErrors(false);
+    try {
+      const res = await axios.get('http://localhost:8080/books');
+      setLocalBooks(res.data);
+    } catch (e) {
+      setHasErrors(true);
+      console.log(hasErrors);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -42,7 +54,11 @@ export function BookListContainer() {
   const handleFetch = () => {
     fetchBooks();
   };
-  return (
+  return loading ? (
+    <div>
+      <h1>Loading</h1>
+    </div>
+  ) : (
     <section>
       <BookList books={localBooks} />
       <div className="mt-2 flex flex-col space-y-3">
