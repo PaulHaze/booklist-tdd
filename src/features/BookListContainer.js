@@ -5,11 +5,10 @@ import { Button } from '@mantine/core';
 import axios from 'axios';
 
 import { BookList } from 'components';
-import { BookListContainer } from 'features';
 
 import { books } from 'data/books';
 
-export function Home() {
+export function BookListContainer() {
   const [localBooks, setLocalBooks] = useState([]);
   const fetchBooks = async () => {
     const res = await axios.get('http://localhost:8080/books');
@@ -43,13 +42,43 @@ export function Home() {
   const handleFetch = () => {
     fetchBooks();
   };
-
   return (
-    <div className="h-[100vh] bg-gradient-to-br from-teal-700/20 to-sky-500/30 flex flex-col p-md">
-      <h1 className="mb-4" data-test="heading">
-        Bookish
-      </h1>
-      <BookListContainer />
-    </div>
+    <section>
+      <BookList books={localBooks} />
+      <div className="mt-2 flex flex-col space-y-3">
+        <Button
+          onClick={handleReload}
+          className="bg-teal-500 w-40"
+          color="teal"
+          variant="filled"
+        >
+          Reload Books
+        </Button>
+        <Button
+          onClick={handleFetch}
+          className="bg-teal-500  w-40"
+          color="teal"
+          variant="filled"
+        >
+          Fetch Books
+        </Button>
+        <Button
+          onClick={handleClear}
+          className="bg-teal-500  w-40"
+          color="teal"
+          variant="filled"
+        >
+          Clear Books
+        </Button>
+        <Button
+          onClick={handleDelete}
+          className="bg-teal-500  w-40"
+          color="teal"
+          variant="filled"
+        >
+          Delete API
+        </Button>
+      </div>
+    </section>
   );
 }
