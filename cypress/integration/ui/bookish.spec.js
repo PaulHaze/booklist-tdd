@@ -35,7 +35,7 @@ describe('Bookish Application', () => {
     }
   });
 
-  it('Visits Bookish and finds an h2 with "Bookish"', () => {
+  it('Visits Bookish and finds an h1 with "Bookish"', () => {
     cy.visit('http://localhost:3000/');
     cy.get('h1[data-test="heading"]').contains('Bookish');
   });
