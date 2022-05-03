@@ -35,6 +35,7 @@ export const useRemoteService = intial => {
         },
       }),
     );
+    fetchBooks();
   };
 
   const deleteData = () => {

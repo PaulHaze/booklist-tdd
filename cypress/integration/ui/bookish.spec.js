@@ -1,13 +1,14 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-return-await */
-// import axios from 'axios';
+import axios from 'axios';
 // import { books } from '../../../src/data/books';
 
-// const API_URL = 'http://localhost:8080/books';
-// const API_DELETE = `${API_URL}?_cleanup=true`;
+const API_URL = 'http://localhost:8080/books';
+const API_DELETE = `${API_URL}?_cleanup=true`;
 
 describe('Bookish Application', () => {
-  /*   
-before(async () => {
+  before(async () => {
     try {
       return await axios.delete(API_DELETE);
     } catch (err) {
@@ -18,16 +19,13 @@ before(async () => {
     const books = [
       { name: 'Refactoring', id: 1 },
       { name: 'Domain-driven design', id: 2 },
+      { name: 'Building Microservices', id: 3 },
     ];
-    books.forEach(async item => {
-      try {
-        return await axios.post(API_URL, item, {
-          headers: { 'Content-Type': 'application/json' },
-        });
-      } catch (err) {
-        return err;
-      }
-    });
+    for (const book of books) {
+      await axios.post(API_URL, book, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
   });
   afterEach(async () => {
     try {
@@ -35,12 +33,11 @@ before(async () => {
     } catch (err) {
       return err;
     }
-  }); 
-  */
+  });
 
   it('Visits Bookish and finds an h2 with "Bookish"', () => {
     cy.visit('http://localhost:3000/');
-    cy.get('h2[data-test="heading"]').contains('Bookish');
+    cy.get('h1[data-test="heading"]').contains('Bookish');
   });
   it('Shows a book list', () => {
     cy.visit('http://localhost:3000/');

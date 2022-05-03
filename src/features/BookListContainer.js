@@ -1,66 +1,39 @@
 import { useEffect, useState } from 'react';
 
-import { Button } from '@mantine/core';
-
 import axios from 'axios';
+
+import { Button } from '@mantine/core';
 
 import { BookList } from 'components';
 
 import { books } from 'data/books';
 
+import { useRemoteService } from 'hooks/useRemoteService';
+
 export function BookListContainer() {
-  const [localBooks, setLocalBooks] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [hasErrors, setHasErrors] = useState(false);
+  const { data, loading, hasErrors, reloadData, deleteData } = useRemoteService(
+    [],
+  );
+  const handleReload = () => reloadData();
 
-  const fetchBooks = async () => {
-    setLoading(true);
-    setHasErrors(false);
-    try {
-      const res = await axios.get('http://localhost:8080/books');
-      setLocalBooks(res.data);
-    } catch (e) {
-      setHasErrors(true);
-      console.log(hasErrors);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleDelete = () => deleteData();
 
-  useEffect(() => {
-    if (!localBooks.length) {
-      fetchBooks();
-    }
-  }, []);
+  // const handleClear = () => {
+  //   setLocalBooks([]);
+  // };
 
-  const handleReload = () => {
-    books.forEach(book =>
-      axios.post('http://localhost:8080/books', book, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }),
-    );
-  };
-
-  const handleDelete = () => {
-    axios.delete('http://localhost:8080/books?_cleanup=true').catch(err => err);
-  };
-
-  const handleClear = () => {
-    setLocalBooks([]);
-  };
-
-  const handleFetch = () => {
-    fetchBooks();
-  };
-  return loading ? (
-    <div>
-      <h1>Loading</h1>
-    </div>
-  ) : (
+  // const handleFetch = () => {
+  //   fetchBooks();
+  // };
+  if (loading) {
+    return <h1>loading</h1>;
+  }
+  if (hasErrors) {
+    return <h1>errors</h1>;
+  }
+  return (
     <section>
-      <BookList books={localBooks} />
+      <BookList books={data} />
       <div className="mt-2 flex flex-col space-y-3">
         <Button
           onClick={handleReload}
@@ -70,22 +43,22 @@ export function BookListContainer() {
         >
           Reload Books
         </Button>
-        <Button
+        {/* <Button
           onClick={handleFetch}
           className="bg-teal-500  w-40"
           color="teal"
           variant="filled"
         >
           Fetch Books
-        </Button>
-        <Button
+        </Button> */}
+        {/* <Button
           onClick={handleClear}
           className="bg-teal-500  w-40"
           color="teal"
           variant="filled"
         >
           Clear Books
-        </Button>
+        </Button> */}
         <Button
           onClick={handleDelete}
           className="bg-teal-500  w-40"
