@@ -6,6 +6,7 @@ export function BookListContainer() {
   const { data, loading, hasErrors, reloadData, deleteData } = useRemoteService(
     [],
   );
+
   const handleReload = () => reloadData();
 
   const handleDelete = () => deleteData();
