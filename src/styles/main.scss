@@ -34,6 +34,9 @@
   a {
     @apply text-blue-600;
   }
+  .grad-bg {
+    @apply h-[100vh] bg-gradient-to-br from-teal-700/20 to-sky-500/30;
+  }
 }
 
 @layer components {

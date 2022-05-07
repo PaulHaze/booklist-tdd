@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import { BookListContainer } from 'features';
 
+import { Wrapper } from 'components';
+
 export function Home() {
   const [localBooks, setLocalBooks] = useState([]);
   const fetchBooks = async () => {
@@ -18,11 +20,8 @@ export function Home() {
   }, []);
 
   return (
-    <div className="h-[100vh] bg-gradient-to-br from-teal-700/20 to-sky-500/30 flex flex-col p-md">
-      <h1 className="mb-4" data-test="heading">
-        Bookish
-      </h1>
+    <Wrapper>
       <BookListContainer />
-    </div>
+    </Wrapper>
   );
 }
