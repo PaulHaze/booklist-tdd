@@ -8,7 +8,7 @@ export function BookList({ books, loading, hasErrors }) {
     return <p>Errors</p>;
   }
   const renderBooks = books.map(book => (
-    <Book key={book.name} bookDetails={book} />
+    <Book key={book.name} bookDetails={book} bookId={book.id} />
   ));
   return <div data-test="book-list">{renderBooks}</div>;
 }
