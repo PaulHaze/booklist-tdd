@@ -1,4 +1,4 @@
-import { Book } from './Book';
+import { BookTitle } from './BookTitle';
 
 export function BookList({ books, loading, hasErrors }) {
   if (loading) {
@@ -7,8 +7,8 @@ export function BookList({ books, loading, hasErrors }) {
   if (hasErrors) {
     return <p>Errors</p>;
   }
-  const renderBooks = books.map(book => (
-    <Book key={book.name} bookDetails={book} bookId={book.id} />
+  const renderBookTitles = books.map(book => (
+    <BookTitle key={book.id} bookTitle={book.name} bookId={book.id} />
   ));
-  return <div data-test="book-list">{renderBooks}</div>;
+  return <div data-test="book-list">{renderBookTitles}</div>;
 }

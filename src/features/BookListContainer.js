@@ -1,14 +1,11 @@
 import { Button } from '@mantine/core';
-// import { useRemoteService } from 'hooks/useRemoteService';
+import { useRemoteService } from 'hooks/useRemoteService';
 import { BookList } from './BookList/BookList';
 
-export function BookListContainer({
-  data,
-  loading,
-  hasErrors,
-  reloadData,
-  deleteData,
-}) {
+export function BookListContainer() {
+  const { data, loading, hasErrors, reloadData, deleteData } = useRemoteService(
+    [],
+  );
   const handleReload = () => reloadData();
 
   const handleDelete = () => deleteData();
