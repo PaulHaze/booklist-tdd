@@ -1,14 +1,15 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-return-await */
-import axios from 'axios';
+// import axios from 'axios';
 // import { books } from '../../../src/data/books';
 
-const API_URL = 'http://localhost:8080/books';
-const API_DELETE = `${API_URL}?_cleanup=true`;
+// const API_URL = 'http://localhost:8080/books';
+// const API_DELETE = `${API_URL}?_cleanup=true`;
 
 describe('Bookish Application', () => {
-  before(async () => {
+  /*   
+before(async () => {
     try {
       return await axios.delete(API_DELETE);
     } catch (err) {
@@ -33,7 +34,8 @@ describe('Bookish Application', () => {
     } catch (err) {
       return err;
     }
-  });
+  }); 
+*/
 
   it('Visits Bookish and finds an h1 with "Bookish"', () => {
     cy.visit('http://localhost:3000/');
