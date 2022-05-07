@@ -55,30 +55,9 @@ before(async () => {
       ]);
     });
   });
+  it('Goes to the details when page when book title is clicked on', () => {
+    cy.visit('http://localhost:3000/');
+    cy.get('div.book-item').contains('View Details').eq(0).click();
+    cy.url().should('include', '/books/1');
+  });
 });
-
-/* 
-THEIRS
-  before(() => {
-    return axios
-      .delete('http://localhost:8080/books?_cleanup=true')
-      .catch(err => err);
-  });
-  afterEach(() => {
-    return axios
-      .delete('http://localhost:8080/books?_cleanup=true')
-      .catch(err => err);
-  });
-  beforeEach(() => {
-    const books = [
-      { name: 'Refactoring', id: 1 },
-      { name: 'Domain-driven design', id: 2 },
-    ];
-    return books.map(
-      async item =>
-        await axios.post('http://localhost:8080/books', item, {
-          headers: { 'Content-Type': 'application/json' },
-        }),
-    );
-  });
-*/
