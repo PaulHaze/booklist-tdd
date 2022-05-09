@@ -48,7 +48,7 @@ before(async () => {
     cy.get('div.book-item').should(pageBooks => {
       expect(pageBooks).to.have.length.lte(10);
       const titles = [...pageBooks].map(x => x.querySelector('h2').innerHTML);
-      expect(titles).to.deep.equal([
+      expect(titles).to.include.members([
         'Refactoring',
         'Domain-driven design',
         'Building Microservices',
