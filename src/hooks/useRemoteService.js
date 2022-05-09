@@ -8,7 +8,6 @@ export const useRemoteService = (url, initialData) => {
   const [data, setData] = useState(initialData);
   const [loading, setLoading] = useState(false);
   const [hasErrors, setHasErrors] = useState(false);
-  console.log('default param', url);
 
   const fetchBooks = async () => {
     setLoading(true);
