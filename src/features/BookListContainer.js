@@ -3,13 +3,12 @@ import { useRemoteService } from 'hooks/useRemoteService';
 import { BookList } from './BookList/BookList';
 
 export function BookListContainer() {
-  const { data, loading, hasErrors, reloadData, deleteData } = useRemoteService(
-    [],
-  );
+  const { data, loading, hasErrors, reloadData, deleteData } =
+    useRemoteService();
+
   const handleReload = () => reloadData();
 
   const handleDelete = () => deleteData();
-
   return (
     <section>
       <BookList books={data} loading={loading} hasErrors={hasErrors} />

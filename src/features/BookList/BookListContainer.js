@@ -4,6 +4,7 @@ import { BookList } from './BookList';
 
 export function BookListContainer() {
   const { data, loading, hasErrors, reloadData, deleteData } = useRemoteService(
+    'http://localhost:8080/books',
     [],
   );
 

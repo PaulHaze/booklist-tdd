@@ -4,16 +4,17 @@ import axios from 'axios';
 
 import { books } from 'data/books';
 
-export const useRemoteService = intial => {
-  const [data, setData] = useState(intial);
+export const useRemoteService = (url, initialData) => {
+  const [data, setData] = useState(initialData);
   const [loading, setLoading] = useState(false);
   const [hasErrors, setHasErrors] = useState(false);
+  console.log('default param', url);
 
   const fetchBooks = async () => {
     setLoading(true);
     setHasErrors(false);
     try {
-      const res = await axios.get('http://localhost:8080/books');
+      const res = await axios.get(url);
       setData(res.data);
     } catch (e) {
       setHasErrors(true);
