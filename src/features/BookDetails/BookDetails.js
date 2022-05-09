@@ -13,6 +13,7 @@ export function BookDetails({ book, loading, hasErrors }) {
   return (
     <div className="book-item detail bg-white rounded border my-3 p-6">
       <h2 className="book-title">{book.name}</h2>
+      <p className="book-description">{book.description}</p>
     </div>
   );
 }

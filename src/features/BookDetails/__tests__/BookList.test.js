@@ -18,7 +18,6 @@ describe('BookDetails', () => {
     const title = container.querySelector('.book-title');
     expect(title.innerHTML).toEqual(book.name);
   });
-  w;
   it('should render the book description', () => {
     const { container } = render(<BookDetails book={book} />);
     const description = container.querySelector('.book-description');
