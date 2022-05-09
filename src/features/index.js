@@ -1,2 +1,2 @@
 export { BookListContainer } from './BookList/BookListContainer';
-export { BookDetailsContainer } from './BookDetailsContainer';
+export { BookDetailsContainer } from './BookDetails/BookDetailsContainer';
