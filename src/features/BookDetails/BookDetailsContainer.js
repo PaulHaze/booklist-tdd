@@ -11,17 +11,7 @@ export function BookDetailsContainer() {
     `http://localhost:8080/books/${id}`,
     {},
   );
-
-  // const book = data.find(b => b.id === id);
-  // console.log(book);
   return (
-    <div>
-      <BookDetails
-        book={data}
-        loading={loading}
-        hasErrors={hasErrors}
-        id={id}
-      />
-    </div>
+    <BookDetails book={data} loading={loading} hasErrors={hasErrors} id={id} />
   );
 }

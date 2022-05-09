@@ -38,3 +38,13 @@ describe('BookList', () => {
     ]);
   });
 });
+
+describe('BookDetails', () => {
+  it('should render the book title', () => {
+    const book = {
+      id: 1,
+      name: 'Refactoring',
+    };
+    const { container } = render();
+  });
+});
