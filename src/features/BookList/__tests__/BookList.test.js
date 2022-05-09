@@ -1,16 +1,22 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
+import { MemoryRouter } from 'react-router-dom';
+
 import { BookList } from '../BookList';
+
+const renderWithRouter = component => {
+  return { ...render(<MemoryRouter>{component}</MemoryRouter>) };
+};
 
 describe('BookList', () => {
   it('renders loading when loading prop is true', () => {
-    const { container } = render(<BookList loading />);
+    const { container } = renderWithRouter(<BookList loading />);
     const content = container.querySelector('p');
     expect(content.innerHTML).toContain('Loading');
   });
   it('renders errors when errors prop is true', () => {
-    const { container } = render(<BookList hasErrors />);
+    const { container } = renderWithRouter(<BookList hasErrors />);
     const content = container.querySelector('p');
     expect(content.innerHTML).toContain('Errors');
   });
@@ -29,7 +35,7 @@ describe('BookList', () => {
         name: 'Building Microservices',
       },
     ];
-    const { container } = render(<BookList books={books} />);
+    const { container } = renderWithRouter(<BookList books={books} />);
     const titles = [...container.querySelectorAll('h2')].map(x => x.innerHTML);
     expect(titles).toEqual([
       'Refactoring',

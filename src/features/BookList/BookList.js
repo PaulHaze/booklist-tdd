@@ -10,5 +10,12 @@ export function BookList({ books, loading, hasErrors }) {
   const renderBookTitles = books.map(book => (
     <BookTitle key={book.id} bookTitle={book.name} bookId={book.id} />
   ));
-  return <div data-test="book-list">{renderBookTitles}</div>;
+  return (
+    <div
+      className="sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-2"
+      data-test="book-list "
+    >
+      {renderBookTitles}
+    </div>
+  );
 }
