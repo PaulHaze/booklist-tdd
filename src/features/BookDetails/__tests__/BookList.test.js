@@ -23,4 +23,28 @@ describe('BookDetails', () => {
     const description = container.querySelector('.book-description');
     expect(description.innerHTML).toEqual(book.description);
   });
+  it('should display the book title when no description is given', () => {
+    const bookNoDesc = {
+      id: 1,
+      name: 'Refactoring',
+    };
+    const { container } = render(<BookDetails book={bookNoDesc} />);
+    const description = container.querySelector('.book-description');
+    expect(description.innerHTML).toEqual(book.name);
+  });
+  it('should show a "show more" link when description is over 300 characters', () => {
+    const bookLongDesc = {
+      id: 1,
+      name: 'Refactoring',
+      description: `Martin Fowler's Refactoring defined core ideas and Martin Fowler's Refactoring defined core ideas and Martin Fowler's Refactoring defined core ideas and Martin Fowler's Refactoring defined core ideas and Martin Fowler's Refactoring defined core ideas and Martin Fowler's Refactoring defined core ideas and `,
+    };
+    const { container } = render(<BookDetails book={bookLongDesc} />);
+    const link = container.querySelector('button.show-more');
+    const title = container.querySelector('p.book-description');
+
+    expect(link.innerHTML).toEqual('Show More');
+    expect(title.innerHTML).toEqual(
+      `Martin Fowler's Refactoring defined core ideas and ...`,
+    );
+  });
 });
