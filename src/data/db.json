@@ -13,7 +13,7 @@
     {
       "id": 3,
       "name": "Building Microservices",
-      "Description": "Author Sam Newman provides you with a firm grounding in the concepts while diving into current solutions for modeling, integrating, testing, deploying, and monitoring your own autonomous services."
+      "description": "Author Sam Newman provides you with a firm grounding in the concepts while diving into current solutions for modeling, integrating, testing, deploying, and monitoring your own autonomous services."
     },
     {
       "id": 4,
