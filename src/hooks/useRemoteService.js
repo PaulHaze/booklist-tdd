@@ -4,8 +4,9 @@ import axios from 'axios';
 
 import { books } from 'data/books';
 
-export const useRemoteService = (url, initialData) => {
+export const useRemoteService = (initialUrl, initialData) => {
   const [data, setData] = useState(initialData);
+  const [url, setUrl] = useState(initialUrl);
   const [loading, setLoading] = useState(false);
   const [hasErrors, setHasErrors] = useState(false);
 
@@ -25,7 +26,7 @@ export const useRemoteService = (url, initialData) => {
 
   useEffect(() => {
     fetchBooks();
-  }, []);
+  }, [url]);
 
   const reloadData = () => {
     books.forEach(book =>
@@ -42,5 +43,5 @@ export const useRemoteService = (url, initialData) => {
     axios.delete('http://localhost:8080/books?_cleanup=true').catch(err => err);
   };
 
-  return { data, loading, hasErrors, reloadData, deleteData };
+  return { data, loading, hasErrors, setUrl, reloadData, deleteData };
 };
