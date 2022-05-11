@@ -1,27 +1,37 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@mantine/core';
 import { useRemoteService } from 'hooks/useRemoteService';
 import { SearchField } from 'components';
 import { BookList } from './BookList';
 
+import { setSearchTerm } from './booklistSlice';
+
 export function BookListContainer() {
+  const dispatch = useDispatch();
+  const { searchTerm } = useSelector(state => state.booklist);
   const { data, loading, hasErrors, setUrl, reloadData, deleteData } =
     useRemoteService('http://localhost:8080/books', []);
 
-  const [searchValue, setSearchValue] = useState('');
-
+  const handleUpdateSearch = val => {
+    dispatch(setSearchTerm(val));
+  };
   const handleReload = () => reloadData();
 
   const handleDelete = () => deleteData();
 
   useEffect(() => {
-    setUrl(`http://localhost:8080/books?q=${searchValue}`);
-  }, [searchValue]);
+    setUrl(`http://localhost:8080/books?q=${searchTerm}`);
+  }, [searchTerm]);
 
   return (
     <section>
-      <SearchField searchValue={searchValue} setSearchValue={setSearchValue} />
+      <SearchField
+        searchValue={searchTerm}
+        setSearchValue={handleUpdateSearch}
+      />
       <BookList books={data} loading={loading} hasErrors={hasErrors} />
       <div className="mt-2 flex flex-col space-y-3">
         <Button
