@@ -7,7 +7,7 @@ import { AppRoutes } from 'routes';
 
 //* REDUX - Uncomment to add redux functionality
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import { store } from './redux/store';
 
 import './styles/main.scss';
 
