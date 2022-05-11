@@ -1,5 +1,8 @@
+import { useState } from 'react';
+
 import { Button } from '@mantine/core';
 import { useRemoteService } from 'hooks/useRemoteService';
+import { SearchField } from 'components';
 import { BookList } from './BookList';
 
 export function BookListContainer() {
@@ -8,13 +11,22 @@ export function BookListContainer() {
     [],
   );
 
+  const [searchValue, setSearchValue] = useState('');
+
+  const searchResults = data.filter(x =>
+    x.name.toLowerCase().includes(searchValue.toLowerCase()),
+  );
+
+  console.log(searchResults);
+
   const handleReload = () => reloadData();
 
   const handleDelete = () => deleteData();
 
   return (
     <section>
-      <BookList books={data} loading={loading} hasErrors={hasErrors} />
+      <SearchField searchValue={searchValue} setSearchValue={setSearchValue} />
+      <BookList books={searchResults} loading={loading} hasErrors={hasErrors} />
       <div className="mt-2 flex flex-col space-y-3">
         <Button
           onClick={handleReload}

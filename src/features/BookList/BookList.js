@@ -13,7 +13,7 @@ export function BookList({ books, loading, hasErrors }) {
   return (
     <div
       className="sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-2"
-      data-test="book-list "
+      data-test="book-list"
     >
       {renderBookTitles}
     </div>
