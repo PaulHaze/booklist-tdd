@@ -7,11 +7,12 @@ import { useRemoteService } from 'hooks/useRemoteService';
 import { SearchField } from 'components';
 import { BookList } from './BookList';
 
-import { setSearchTerm } from './booklistSlice';
+import { setSearchTerm, getBooksThunk } from './booklistSlice';
 
 export function BookListContainer() {
   const dispatch = useDispatch();
-  const { searchTerm } = useSelector(state => state.booklist);
+  const { searchTerm, books, isLoading } = useSelector(state => state.booklist);
+
   const { data, loading, hasErrors, setUrl, reloadData, deleteData } =
     useRemoteService('http://localhost:8080/books', []);
 
@@ -21,6 +22,11 @@ export function BookListContainer() {
   const handleReload = () => reloadData();
 
   const handleDelete = () => deleteData();
+
+  useEffect(() => {
+    dispatch(getBooksThunk());
+    console.log(isLoading);
+  }, [dispatch]);
 
   useEffect(() => {
     setUrl(`http://localhost:8080/books?q=${searchTerm}`);

@@ -11,7 +11,9 @@ export const store = configureStore({
     [booksApi.reducerPath]: booksApi.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(booksApi.middleware),
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(booksApi.middleware),
 });
 
 setupListeners(store.dispatch);

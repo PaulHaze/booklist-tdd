@@ -4,6 +4,9 @@ export const booksApi = createApi({
   reducerPath: 'booksApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/books' }),
   endpoints: builder => ({
+    getAllBooks: builder.query({
+      query: base => base,
+    }),
     getBookDetails: builder.query({
       query: id => `/${id}`,
     }),
@@ -13,4 +16,5 @@ export const booksApi = createApi({
   }),
 });
 
-export const { useGetBookDetails, useGetBooksBySearchTerm } = booksApi;
+export const { useGetAllBooks, useGetBookDetails, useGetBooksBySearchTerm } =
+  booksApi;

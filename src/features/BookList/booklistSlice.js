@@ -1,9 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { books } from 'data/books';
+import axios from 'axios';
+
+// http://localhost:8080/books
+
+// import { books } from 'data/books';
+
+const getBooks = async () => {
+  const response = await axios.get('http://localhost:8080/books');
+  return response.data;
+};
+
+export const getBooksThunk = createAsyncThunk(
+  'booklist/getBooksThunk',
+  async () => getBooks(),
+);
 
 const initialState = {
-  books,
+  isLoading: false,
+  hasErrors: false,
+  books: [],
   searchTerm: '',
 };
 
@@ -13,6 +29,20 @@ const booklistSlice = createSlice({
   reducers: {
     setSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
+    },
+  },
+  extraReducers: {
+    [getBooksThunk.pending](state) {
+      state.isLoading = true;
+    },
+    [getBooksThunk.fulfilled](state, action) {
+      state.books = action.payload;
+      state.isLoading = false;
+      state.hasErrors = false;
+    },
+    [getBooksThunk.rejected](state) {
+      state.isLoading = false;
+      state.hasErrors = true;
     },
   },
 });
