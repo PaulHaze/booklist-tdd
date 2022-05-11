@@ -6,8 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { AppRoutes } from 'routes';
 
 //* REDUX - Uncomment to add redux functionality
-// import { Provider } from 'react-redux';
-// import store from './redux/store';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 import './styles/main.scss';
 
@@ -15,11 +15,11 @@ import './styles/main.scss';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
-    {/* </Provider> */}
+    <Provider store={store}>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
 );
 

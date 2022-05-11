@@ -7,6 +7,14 @@
 // const API_URL = 'http://localhost:8080/books';
 // const API_DELETE = `${API_URL}?_cleanup=true`;
 
+import {
+  goToApp,
+  getAppTitle,
+  checkBookListWith,
+  gotoFirstBookDetails,
+  performSearch,
+} from './testingHelpers';
+
 describe('Bookish Application', () => {
   /*   
 before(async () => {
@@ -38,34 +46,20 @@ before(async () => {
 */
 
   it('Visits Bookish and finds an h1 with "Bookish"', () => {
-    cy.visit('http://localhost:3000/');
-    cy.get('h1[data-test="heading"]').contains('Bookish');
+    goToApp();
+    getAppTitle();
   });
   it('Shows a book list', () => {
-    cy.visit('http://localhost:3000/');
-    cy.get('div[data-test="book-list"]').should('exist');
-    cy.get('div.book-item').should('have.length.lte', 10);
-    cy.get('div.book-item').should(pageBooks => {
-      expect(pageBooks).to.have.length.lte(10);
-      const titles = [...pageBooks].map(x => x.querySelector('h2').innerHTML);
-      expect(titles).to.include.members([
-        'Refactoring',
-        'Domain-driven design',
-        'Building Microservices',
-      ]);
-    });
+    checkBookListWith([
+      'Refactoring',
+      'Domain-driven design',
+      'Building Microservices',
+    ]);
   });
   it('Goes to the details when page when book title is clicked on', () => {
-    cy.visit('http://localhost:3000/');
-    cy.get('div.book-item').contains('View Details').eq(0).click();
-    cy.url().should('include', '/books/1');
-    cy.get('h2.book-title').contains('Refactoring');
+    gotoFirstBookDetails();
   });
   it('Searches for books by title', () => {
-    cy.visit('http://localhost:3000/');
-    cy.get('div.book-item').should('have.length.lte', 10);
-    cy.get('input[data-test="search"]').type('design');
-    cy.get('div.book-item').should('have.length', 1);
-    cy.get('div.book-item').eq(0).contains('Domain-driven design');
+    performSearch('desi');
   });
 });
