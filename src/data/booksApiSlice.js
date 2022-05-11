@@ -1,8 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// http://localhost:8080/books
-// ?q=${searchTerm}
-
 export const booksApi = createApi({
   reducerPath: 'booksApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/books' }),
@@ -15,3 +12,5 @@ export const booksApi = createApi({
     }),
   }),
 });
+
+export const { useGetBookDetails, useGetBooksBySearchTerm } = booksApi;
